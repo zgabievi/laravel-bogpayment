@@ -32,7 +32,7 @@
                 "Zorb\\BOGPayment\\BOGPaymentServiceProvider"
             ],
             "aliases": {
-                "Onway": "Zorb\\BOGPayment\\Facades\\BOGPayment"
+                "BOGPayment": "Zorb\\BOGPayment\\Facades\\BOGPayment"
             }
         }
     },
