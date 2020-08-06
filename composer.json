@@ -1,0 +1,43 @@
+{
+    "name": "zgabievi/laravel-bogpayment",
+    "description": "Bank of Georgia payment integration for Laravel",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zura Gabievi",
+            "email": "zura.gabievi@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Zorb\\BOGPayment\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.2",
+        "illuminate/config": "^6.0|^7.0",
+        "illuminate/database": "^6.0|^7.0",
+        "illuminate/support": "^6.0|^7.0",
+        "ext-openssl": "*",
+        "ext-libxml": "*"
+    },
+    "require-dev": {
+        "ext-curl": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zorb\\BOGPayment\\BOGPaymentServiceProvider"
+            ],
+            "aliases": {
+                "Onway": "Zorb\\BOGPayment\\Facades\\BOGPayment"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
