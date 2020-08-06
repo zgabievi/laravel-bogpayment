@@ -1,5 +1,9 @@
 # Bank of Georgia payment integration for Laravel
 
+[![Packagist](https://img.shields.io/packagist/v/zgabievi/laravel-bogpayment.svg)](https://packagist.org/packages/zgabievi/laravel-bogpayment)
+[![Packagist](https://img.shields.io/packagist/dt/zgabievi/laravel-bogpayment.svg)](https://packagist.org/packages/zgabievi/laravel-bogpayment)
+[![license](https://img.shields.io/github/license/zgabievi/laravel-bogpayment.svg)](https://packagist.org/packages/zgabievi/laravel-bogpayment)
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
