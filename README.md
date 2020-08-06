@@ -61,7 +61,8 @@ On this step you should redirect user to card details page
 ```php
 use Zorb\BOGPayment\Facades\BOGPayment;
 
-class PaymentController extends Controller {
+class PaymentController extends Controller
+{
     //
     public function __invoke()
     {
@@ -85,7 +86,8 @@ This process is called **PaymentAvail**.
 ```php
 use Zorb\BOGPayment\Facades\BOGPayment;
 
-class PaymentCheckController extends Controller {
+class PaymentCheckController extends Controller
+{
     //
     public function __invoke()
     {
@@ -129,7 +131,8 @@ This process is called **RegisterPayment**.
 ```php
 use Zorb\BOGPayment\Facades\BOGPayment;
 
-class PaymentRegisterController extends Controller {
+class PaymentRegisterController extends Controller
+{
     //
     public function __invoke()
     {
@@ -182,7 +185,8 @@ Recurring process is the same as default process. Difference is that user doesn'
 ```php
 use Zorb\BOGPayment\Facades\BOGPayment;
 
-class PaymentRecurringController extends Controller {
+class PaymentRecurringController extends Controller
+{
     //
     public function __invoke(string $trx_id)
     {
@@ -202,7 +206,8 @@ In order to refund money you need to have trx_id of payment and rrn.
 ```php
 use Zorb\BOGPayment\Facades\BOGPayment;
 
-class PaymentRefundController extends Controller {
+class PaymentRefundController extends Controller
+{
     //
     public function __invoke(string $trx_id, string $rrn)
     {
