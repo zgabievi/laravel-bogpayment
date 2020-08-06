@@ -59,7 +59,7 @@ Default process has several to be completed:
 On this step you should redirect user to card details page
 
 ```php
-use Zorb\BOGPayment\BOGPayment;
+use Zorb\BOGPayment\Facades\BOGPayment;
 
 class PaymentController extends Controller {
     //
@@ -83,7 +83,7 @@ On this step bank will check that you are ready to accept payment.
 This process is called **PaymentAvail**.
 
 ```php
-use Zorb\BOGPayment\BOGPayment;
+use Zorb\BOGPayment\Facades\BOGPayment;
 
 class PaymentCheckController extends Controller {
     //
@@ -127,7 +127,7 @@ On this step bank will provide details of the payment.
 This process is called **RegisterPayment**.
 
 ```php
-use Zorb\BOGPayment\BOGPayment;
+use Zorb\BOGPayment\Facades\BOGPayment;
 
 class PaymentRegisterController extends Controller {
     //
@@ -180,7 +180,7 @@ Recurring process is the same as default process. Difference is that user doesn'
 3. Bank will register payment details on your route
 
 ```php
-use Zorb\BOGPayment\BOGPayment;
+use Zorb\BOGPayment\Facades\BOGPayment;
 
 class PaymentRecurringController extends Controller {
     //
@@ -200,7 +200,7 @@ In your check and register controllers you can catch `BOGPayment::getParam('o.re
 In order to refund money you need to have trx_id of payment and rrn.
 
 ```php
-use Zorb\BOGPayment\BOGPayment;
+use Zorb\BOGPayment\Facades\BOGPayment;
 
 class PaymentRefundController extends Controller {
     //
