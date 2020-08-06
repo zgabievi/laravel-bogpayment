@@ -19,11 +19,12 @@
         "illuminate/config": "^6.0|^7.0",
         "illuminate/database": "^6.0|^7.0",
         "illuminate/support": "^6.0|^7.0",
-        "ext-simplexml": "*",
-        "ext-openssl": "*",
-        "ext-libxml": "*"
+        "bensampo/laravel-enum": "^1.38"
     },
     "require-dev": {
+        "ext-simplexml": "*",
+        "ext-openssl": "*",
+        "ext-libxml": "*",
         "ext-curl": "*"
     },
     "extra": {
