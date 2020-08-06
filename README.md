@@ -15,7 +15,7 @@
 To get started, you need to install package:
 
 ```shell script
-composer require zgabievi/laravel-onway
+composer require zgabievi/laravel-bogpayment
 ```
 
 If your laravel version is older than 5.5, then add this to your service providers in config/app.php:
