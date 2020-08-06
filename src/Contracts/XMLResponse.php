@@ -6,16 +6,24 @@ use Symfony\Component\HttpFoundation\Response;
 
 class XMLResponse
 {
-    //
+    /**
+     * @var Response
+     */
     protected $response;
 
-    //
+    /**
+     * XMLResponse constructor.
+     */
     public function __construct()
     {
         $this->response = new Response('', Response::HTTP_OK, ['content-type' => 'text/xml']);
     }
 
-    //
+    /**
+     * This method is used to send success on register process
+     *
+     * @param array $data
+     */
     function checkSuccess($data = [])
     {
         $trx_id = $this->clean($data['trx_id'], 50);
@@ -52,7 +60,11 @@ XML;
         $this->send($content);
     }
 
-    //
+    /**
+     * This method is used to send error on check process
+     *
+     * @param string $desc
+     */
     function checkError($desc = 'Unable to accept this payment')
     {
         $desc = $this->clean($desc, 125);
@@ -69,7 +81,9 @@ XML;
         $this->send($content);
     }
 
-    //
+    /**
+     * This method is used to send success on register process
+     */
     function registerSuccess()
     {
         $content = <<<XML
@@ -84,7 +98,11 @@ XML;
         $this->send($content);
     }
 
-    //
+    /**
+     * This method is used to send error on register process
+     *
+     * @param string $desc
+     */
     function registerError($desc = 'Unable to accept this payment')
     {
         $desc = $this->clean($desc, 125);
@@ -101,7 +119,11 @@ XML;
         $this->send($content);
     }
 
-    //
+    /**
+     * This method is used to send response
+     *
+     * @param $content
+     */
     public function send($content)
     {
         $this->response->setContent($content);
@@ -110,7 +132,13 @@ XML;
         exit;
     }
 
-    //
+    /**
+     * This method is used to clean string from special chars
+     *
+     * @param $var
+     * @param null $substr
+     * @return string
+     */
     protected function clean($var, $substr = null)
     {
         $var = htmlspecialchars($var);

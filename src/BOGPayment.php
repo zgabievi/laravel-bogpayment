@@ -3,19 +3,25 @@
 namespace Zorb\BOGPayment;
 
 use Zorb\BOGPayment\Contracts\XMLResponse;
+use Psr\Http\Message\StreamInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Log;
 use UnexpectedValueException;
+use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use SimpleXMLElement;
 
 class BOGPayment
 {
     /**
+     * This method is used to redirect user to card details page
+     *
      * @param array $additional_params
+     * @param bool $preAuth
      * @return RedirectResponse
      */
-    function redirect(array $additional_params = []): RedirectResponse
+    function redirect(array $additional_params = [], bool $preAuth = false): RedirectResponse
     {
         $lang = config('bogpayment.language');
         $merchant_id = rawurlencode(config('bogpayment.merchant_id'));
@@ -29,6 +35,7 @@ class BOGPayment
             'merch_id' => $merchant_id,
             'back_url_s' => $success_url,
             'back_url_f' => $fail_url,
+            'preauth' => $preAuth ? 'Y' : 'N'
         ], $additional_params);
 
         $query_params = http_build_query($params);
@@ -38,7 +45,9 @@ class BOGPayment
         return redirect($url);
     }
 
-    //
+    /**
+     * This method is used to check if basic authentication is correct
+     */
     function checkAuth()
     {
         if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
@@ -59,7 +68,9 @@ class BOGPayment
         }
     }
 
-    //
+    /**
+     * This method is used to check if request is made from allowed ip
+     */
     function checkIpAllowed()
     {
         $ip_list = explode(',', config('bogpayment.allowed_ips'));
@@ -75,7 +86,11 @@ class BOGPayment
         }
     }
 
-    //
+    /**
+     * This method is used to compare signature parameter to certificate
+     *
+     * @param string $mode
+     */
     function checkSignature($mode = 'check')
     {
         $signature = request('signature');
@@ -100,14 +115,25 @@ class BOGPayment
         }
     }
 
-    //
-    function getParam($name, $default = '')
+    /**
+     * This method is used to get request parameters from payment process
+     *
+     * @param $name
+     * @param string $default
+     * @return Request
+     */
+    function getParam($name, $default = ''): Request
     {
         $name = str_replace('.', '_', $name);
         return request($name, $default);
     }
 
-    //
+    /**
+     * This method is used to send failed xml response
+     *
+     * @param string $mode
+     * @param string $message
+     */
     function sendError($mode = 'check', $message = '')
     {
         $response = new XMLResponse();
@@ -123,7 +149,12 @@ class BOGPayment
         }
     }
 
-    //
+    /**
+     * This method is used to send success xml response
+     *
+     * @param string $mode
+     * @param array $data
+     */
     function sendSuccess($mode = 'check', $data = [])
     {
         $response = new XMLResponse();
@@ -139,8 +170,14 @@ class BOGPayment
         }
     }
 
-    //
-    function repeat(string $trx_id, array $additional_params = [])
+    /**
+     * This method is used for recurring process
+     *
+     * @param string $trx_id
+     * @param array $additional_params
+     * @return StreamInterface
+     */
+    function repeat(string $trx_id, array $additional_params = []): StreamInterface
     {
         $lang = config('bogpayment.language');
         $merchant_id = rawurlencode(config('bogpayment.merchant_id'));
@@ -166,8 +203,16 @@ class BOGPayment
         return $request->getBody();
     }
 
-    //
-    function refund(string $trx_id, string $rrn, int $amount)
+    /**
+     * This method is used to refund payment transaction
+     *
+     * @param string $trx_id
+     * @param string $rrn
+     * @param int $amount
+     * @return Object
+     * @throws \Exception
+     */
+    function refund(string $trx_id, string $rrn, int $amount): Object
     {
         $merchant_id = rawurlencode(config('bogpayment.merchant_id'));
         $api_pass = rawurlencode(config('bogpayment.refund_api_pass'));
@@ -192,8 +237,13 @@ class BOGPayment
         }
     }
 
-    //
-    protected function parseXml($xml)
+    /**
+     * This method is used to parse xml string
+     *
+     * @param $xml
+     * @return SimpleXMLElement
+     */
+    protected function parseXml($xml): SimpleXMLElement
     {
         libxml_use_internal_errors(true);
         $object = simplexml_load_string($xml);
