@@ -74,7 +74,9 @@ class PaymentController extends Controller {
 
 #### Step #2
 
-On this step bank will check that you are ready to accept payment
+On this step bank will check that you are ready to accept payment.
+
+This process is called **PaymentAvail**.
 
 ```php
 use Zorb\BOGPayment\BOGPayment;
@@ -116,7 +118,9 @@ class PaymentCheckController extends Controller {
 
 #### Step #3
 
-On this step bank will provide details of the payment
+On this step bank will provide details of the payment.
+
+This process is called **RegisterPayment**.
 
 ```php
 use Zorb\BOGPayment\BOGPayment;
@@ -254,6 +258,25 @@ class PaymentRefundController extends Controller {
 | --- | --- |
 | code | Numeric value for result code |
 | desc | Description of payment result | 
+
+### Extended result codes
+
+| Code | Number | Key | Description |
+| --- | --- | --- | --- |
+| OK | 0 | SUCCESS | The payment was completed successfully, the result was successfully communicated to the store |
+| PREAUTHORIZE_OK | 3 | SUCCESS | The blocking of the amount was completed successfully, the result was successfully reported to the store |
+| ONLINE_RP_FAILED | 1 | SEMI-SUCCESSFUL | The payment was completed successfully, but the result was not successfully delivered to the store in Online mode |
+| CPA_REJECTED | 2 | FAILED | The store refused to process the payment in the first phase |
+| CPA_NONE | 21 | FAILED | In-store payment verification was not performed. Perhaps the store or billing has been blocked |
+| CPA_FAILED | 4 | FAILED | An error occurred while interacting with the store during the first phase |
+| CLIENT_LOST | 53 | FAILED | The transaction timed out because the user refused to continue the payment for some reason |
+| USER_CANCEL | 54 | FAILED | The user deliberately chose to cancel the payment |
+| PAYMENT_REJECTED | -2 | FAILED | Refusal to process payment |
+| PAYMENT_FAILED | -3 | FAILED | Error during payment |
+| PAYMENT_REVERSED | -4 | FAILED | A successful payment was canceled on the initiative of the store at the registerPayment stage. The use of this code is for the future |
+| CS_NOTSUPPORTED | 11 | FAILED | The option of saving cards is not available for this store, payment for previously saved cards, recurring payments or currency is not supported for recurrent checks |
+| CS_LIMITEXCEEDED | 12 | FAILED | The amount in the response of the merchant PaymentAvail Response exceeds maxCardRegAmount |
+| CS_CARDNOTFOUND | 13 | FAILED | PaymentAvail Response received card details expired, card is not registered (received cardId is not available for this store) or card does not support recurring payments |
 
 ## Environment Variables
 
