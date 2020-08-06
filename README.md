@@ -38,7 +38,7 @@ You can publish config file using this command:
 php artisan vendor:publish --provider="Zorb\BOGPayment\BOGPaymentServiceProvider"
 ```
 
-This command will copy config file and create migrations for you. You should run php artisan migrate to get deliveries table.
+This command will copy config file for you.
 
 ## Usage
 
@@ -67,10 +67,14 @@ class PaymentController extends Controller {
     {
         return BOGPayment::redirect([
             'order_id' => 1,
-        ]);
+        ], false);
     }
 }
 ```
+
+Pass any parameter you want to recieve on check and register step as a first value. (default: `[]`)
+
+Second value is boolean and defines if you want to pre-authorize payment, block amount. (default: `false`)
 
 #### Step #2
 
