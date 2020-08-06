@@ -266,7 +266,7 @@ class PaymentRefundController extends Controller {
 ### Extended result codes
 
 | Code | Number | Key | Description |
-| --- | --- | --- | --- |
+| --- | :---: | --- | --- |
 | OK | 0 | SUCCESS | The payment was completed successfully, the result was successfully communicated to the store |
 | PREAUTHORIZE_OK | 3 | SUCCESS | The blocking of the amount was completed successfully, the result was successfully reported to the store |
 | ONLINE_RP_FAILED | 1 | SEMI-SUCCESSFUL | The payment was completed successfully, but the result was not successfully delivered to the store in Online mode |
@@ -285,7 +285,7 @@ class PaymentRefundController extends Controller {
 ## Environment Variables
 
 | Key | Meaning | Type | Default |
-| --- | --- | --- | --- |
+| --- | --- | :---: | --- |
 | BOG_PAYMENT_DEBUG | This value decides to log or not to log requests | bool | false |
 | BOG_PAYMENT_URL | Payment url from Bank of Georgia | string | https://3dacq.georgiancard.ge/payment/start.wsm |
 | BOG_PAYMENT_MERCHANT_ID | Merchant ID from Bank of Georgia | string |  |
@@ -304,4 +304,4 @@ class PaymentRefundController extends Controller {
 
 ## License
 
-laravel-bogpayment is licensed under a [MIT License](https://github.com/zgabievi/laravel-bogpayment/blob/master/LICENSE).
+[zgabievi/laravel-bogpayment](https://github.com/zgabievi/laravel-bogpayment) is licensed under a [MIT License](https://github.com/zgabievi/laravel-bogpayment/blob/master/LICENSE).
