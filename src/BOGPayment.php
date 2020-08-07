@@ -54,16 +54,11 @@ class BOGPayment
             $shop_name = config('bogpayment.shop_name');
 
             header('WWW-Authenticate: Basic realm="' . $shop_name . '"');
-            header('HTTP/1.0 401 Unauthorized');
-            echo 'Access denied';
-            exit;
         } else {
             if ($_SERVER['PHP_AUTH_USER'] != config('bogpayment.http_auth_user')
                 || $_SERVER['PHP_AUTH_PW'] != config('bogpayment.http_auth_pass')
             ) {
-                header('HTTP/1.0 401 Unauthorized');
-                echo 'Access denied';
-                exit;
+                abort(401);
             }
         }
     }
@@ -79,9 +74,7 @@ class BOGPayment
             $client_ip = request()->getClientIp();
 
             if (!in_array($client_ip, $ip_list)) {
-                header('HTTP/1.0 403 Forbidden');
-                echo 'Access denied for IP: ' . $client_ip;
-                exit;
+                abort(403, 'Access denied for IP: ' . $client_ip);
             }
         }
     }
