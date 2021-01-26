@@ -1,10 +1,10 @@
-[![laravel-bogpayment](https://banners.beyondco.de/BOG%20Payment.jpeg?theme=light&packageName=zgabievi%2Flaravel-bogpayment&pattern=topography&style=style_1&description=BOG+Payment+integration+for+Laravel&md=1&showWatermark=0&fontSize=100px&images=cash)](https://github.com/zgabievi/laravel-bogpayment)
-
 # BOG Payment integration for Laravel
 
 [![Packagist](https://img.shields.io/packagist/v/zgabievi/laravel-bogpayment.svg)](https://packagist.org/packages/zgabievi/laravel-bogpayment)
 [![Packagist](https://img.shields.io/packagist/dt/zgabievi/laravel-bogpayment.svg)](https://packagist.org/packages/zgabievi/laravel-bogpayment)
 [![license](https://img.shields.io/github/license/zgabievi/laravel-bogpayment.svg)](https://packagist.org/packages/zgabievi/laravel-bogpayment)
+
+[![laravel-bogpayment](https://banners.beyondco.de/BOG%20Payment.jpeg?theme=light&packageName=zgabievi%2Flaravel-bogpayment&pattern=topography&style=style_1&description=BOG+Payment+integration+for+Laravel&md=1&showWatermark=0&fontSize=100px&images=cash)](https://github.com/zgabievi/laravel-bogpayment)
 
 ## Table of Contents
 - [Installation](#installation)
