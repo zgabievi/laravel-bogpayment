@@ -15,10 +15,10 @@
         }
     },
     "require": {
-        "php": "^7.2",
-        "illuminate/config": "^6.0|^7.0",
-        "illuminate/database": "^6.0|^7.0",
-        "illuminate/support": "^6.0|^7.0",
+        "php": "^7.2|^7.3|^7.4",
+        "illuminate/config": "^6.0|^7.0|^8.0",
+        "illuminate/database": "^6.0|^7.0|^8.0",
+        "illuminate/support": "^6.0|^7.0|^8.0",
         "bensampo/laravel-enum": "^1.38"
     },
     "require-dev": {
